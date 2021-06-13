@@ -39,17 +39,6 @@ const tasks = [
   }
 ];
 
-// (function(arrOfTasks) {
-//   const objOfTasks = arrOfTasks.reduce((accum, elem) => {
-//     accum[elem._id] = elem;
-//     // delete accum[elem._id]._id;
-//     return accum;
-//   })
-//   console.log(objOfTasks);
-// })(tasks);
-
-//render
-
 const ul = document.querySelector('.list-group');
 
 const createLi = ({title, body, _id}) => `
@@ -68,7 +57,6 @@ const renderAllPosts = (data) => {
 renderAllPosts(tasks);
 
 let id = 0;
-
 const form = document.querySelector('[name="addTask"]');
 const inputTitle = form.querySelector('input[name="title"]');
 const inputBody = form.querySelector('input[name="body"]');
