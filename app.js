@@ -109,3 +109,27 @@ ul.addEventListener('click', (evt) => {
     renderAllPosts(tasks);
   }
 })
+
+// themes
+const navbar = document.querySelector('nav.navbar');
+const btnSubmit = form.querySelector('button');
+const formControl = navbar.querySelector('.form-control');
+
+const themes = {
+  default: 'primary',
+  dark: 'dark',
+  light: 'light'
+};
+navbarClases = ['bg-primary', 'bg-light', 'bg-dark'];
+btnSubmitClases = ['btn-primary', 'btn-light', 'btn-dark'];
+
+const removeAllAddOne = (arr, elem, beginStr, needClass) => {
+  arr.forEach(clas => elem.classList.remove(clas));
+  elem.classList.add(`${beginStr}-${needClass}`)
+}
+
+formControl.addEventListener('change', (evt) => {
+  const needClass = themes[evt.target.value];
+  removeAllAddOne(navbarClases, navbar, 'bg', needClass);
+  removeAllAddOne(btnSubmitClases, btnSubmit, 'btn', needClass);
+})
