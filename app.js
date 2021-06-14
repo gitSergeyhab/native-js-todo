@@ -101,7 +101,7 @@ ul.addEventListener('click', (evt) => {
 // themes
 const navbar = document.querySelector('nav.navbar');
 const btnSubmit = form.querySelector('button');
-const formControl = navbar.querySelector('.form-control');
+const formControl = navbar.querySelector('#themeSelect');
 
 const themes = {
   default: 'primary',
@@ -116,8 +116,26 @@ const removeAllAddOne = (arr, elem, beginStr, needClass) => {
   elem.classList.add(`${beginStr}-${needClass}`)
 }
 
-formControl.addEventListener('change', (evt) => {
-  const needClass = themes[evt.target.value];
+const takeThisTheme = (value) => {
+  const needClass = themes[value];
   removeAllAddOne(navbarClases, navbar, 'bg', needClass);
   removeAllAddOne(btnSubmitClases, btnSubmit, 'btn', needClass);
+}
+
+// --- забирает тему из локалстораж
+const stotageValueTheme = localStorage.getItem('themeValue');
+if (stotageValueTheme) {
+  formControl.querySelectorAll('option').forEach(opt => {
+    opt.selected = false
+    if(opt.value === stotageValueTheme) {
+      opt.selected = true;
+    }
+  })
+  takeThisTheme(stotageValueTheme);
+}
+
+formControl.addEventListener('change', (evt) => {
+  const value = evt.target.value  
+  takeThisTheme(value)
+  localStorage.setItem('themeValue', value)
 })
